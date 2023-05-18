@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textViewLogin" type="id" />
+    <item name="etReenterPassword" type="id" />
+    <item name="btnRegister" type="id" />
+    <item name="tvStatus" type="id" />
+    <item name="etName" type="id" />
+</resources>
