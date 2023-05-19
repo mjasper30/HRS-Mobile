@@ -11,6 +11,10 @@ public class RoomList {
         mPrice = price;
     }
 
+    public void changeRoom(String text){
+        mRoomName = text;
+    }
+
     public int getmImageResource() {
         return mImageResource;
     }

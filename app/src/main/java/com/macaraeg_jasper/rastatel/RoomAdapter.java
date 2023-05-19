@@ -13,16 +13,37 @@ import java.util.ArrayList;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder>{
     private ArrayList<RoomList> mRoomList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onRoomClick(int position);
+    }
+
+    public void setOnRoomClickLister(OnItemClickListener listener){
+        mListener = listener;
+    }
     public static class RoomViewHolder extends RecyclerView.ViewHolder{
         public ImageView mImageView;
         public TextView mRoomName;
         public TextView mPrice;
 
-        public RoomViewHolder(View roomView){
+        public RoomViewHolder(View roomView, OnItemClickListener listener){
             super(roomView);
             mImageView = roomView.findViewById(R.id.imageView);
             mRoomName = roomView.findViewById(R.id.room_name);
             mPrice = roomView.findViewById(R.id.price);
+
+            roomView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onRoomClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -34,7 +55,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     @Override
     public RoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.room_list, parent, false);
-        RoomViewHolder rvh = new RoomViewHolder(v);
+        RoomViewHolder rvh = new RoomViewHolder(v, mListener);
         return rvh;
     }
 

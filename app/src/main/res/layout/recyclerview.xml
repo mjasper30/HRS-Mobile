@@ -14,7 +14,47 @@
         android:padding="4dp"
         android:background="@android:color/darker_gray"
         android:scrollbars="vertical"
+        android:layout_marginBottom="100dp"
         >
-
     </androidx.recyclerview.widget.RecyclerView>
+    <EditText
+        android:id="@+id/edittext_insert"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="25dp"
+        android:inputType="number">
+
+    </EditText>
+    <Button
+        android:id="@+id/button_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert"
+        android:layout_alignBottom="@+id/edittext_insert"
+        android:layout_toEndOf="@+id/edittext_insert">
+
+    </Button>
+
+    <EditText
+        android:id="@+id/edittext_remove"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_alignBottom="@+id/button_insert"
+        android:layout_toEndOf="@+id/button_insert"
+        android:inputType="number">
+
+    </EditText>
+    <Button
+        android:id="@+id/button_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:layout_alignBottom="@+id/edittext_remove"
+        android:layout_toEndOf="@+id/edittext_remove">
+
+    </Button>
 </RelativeLayout>
