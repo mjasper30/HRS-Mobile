@@ -1,6 +1,5 @@
 package com.macaraeg_jasper.rastatel;
 
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,10 @@ import java.util.ArrayList;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder>{
     private ArrayList<RoomList> mRoomList;
     private OnItemClickListener mListener;
+    public RoomAdapter(ArrayList<RoomList> roomList){
+        mRoomList = roomList;
+    }
+
     public interface OnRoomClickListener {
         void onRoomClick(int position);
         void onDeleteClick(int position);
@@ -66,10 +69,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                 }
             });
         }
-    }
-
-    public RoomAdapter(ArrayList<RoomList> roomList){
-        mRoomList = roomList;
     }
 
     @NonNull
