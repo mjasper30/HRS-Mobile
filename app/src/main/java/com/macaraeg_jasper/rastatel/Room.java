@@ -14,7 +14,7 @@ public class Room extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.recyclerview);
 
         ArrayList<RoomList> roomList = new ArrayList<>();
         roomList.add(new RoomList(R.drawable.room1, "Single Room", "P 4500"));
