@@ -61,6 +61,11 @@ public class Room extends AppCompatActivity{
         mAdapter.notifyItemRemoved(position);
     }
 
+    public void changeRoom(int position, String text){
+        mRoomList.get(position).changeRoom(text);
+        mAdapter.notifyItemChanged(position);
+    }
+
     public void createExampleList(){
         mRoomList = new ArrayList<>();
         mRoomList.add(new RoomList(R.drawable.room1, "Single Room", "P 4500"));
@@ -77,5 +82,12 @@ public class Room extends AppCompatActivity{
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickLister(new RoomAdapter.OnItemClickListener() {
+            @Override
+            public void onRoomClick(int position) {
+                changeRoom(position, "Clicked");
+            }
+        });
     }
 }

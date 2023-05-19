@@ -14,13 +14,16 @@ import java.util.ArrayList;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder>{
     private ArrayList<RoomList> mRoomList;
     private OnItemClickListener mListener;
+    public interface OnRoomClickListener {
+        void onRoomClick(int position);
+    }
 
     public interface OnItemClickListener{
         void onRoomClick(int position);
     }
 
-    public void setOnRoomClickLister(OnItemClickListener listener){
-        mListener = listener;
+    public void setOnItemClickLister(OnItemClickListener listener){
+        mListener = (OnItemClickListener) listener;
     }
     public static class RoomViewHolder extends RecyclerView.ViewHolder{
         public ImageView mImageView;
@@ -33,6 +36,17 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             mRoomName = roomView.findViewById(R.id.room_name);
             mPrice = roomView.findViewById(R.id.price);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onRoomClick(position);
+                        }
+                    }
+                }
+            });
             roomView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
