@@ -1,5 +1,6 @@
 package com.macaraeg_jasper.rastatel;
 
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,13 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     private OnItemClickListener mListener;
     public interface OnRoomClickListener {
         void onRoomClick(int position);
+        void onDeleteClick(int position);
     }
 
     public interface OnItemClickListener{
         void onRoomClick(int position);
+
+        void onDeleteClick(int position);
     }
 
     public void setOnItemClickLister(OnItemClickListener listener){
@@ -29,14 +33,16 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         public ImageView mImageView;
         public TextView mRoomName;
         public TextView mPrice;
+        public ImageView mDeleteImage;
 
         public RoomViewHolder(View roomView, OnItemClickListener listener){
             super(roomView);
             mImageView = roomView.findViewById(R.id.imageView);
             mRoomName = roomView.findViewById(R.id.room_name);
             mPrice = roomView.findViewById(R.id.price);
+            mDeleteImage = roomView.findViewById(R.id.image_delete);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            roomView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(listener != null){
@@ -47,13 +53,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                     }
                 }
             });
-            roomView.setOnClickListener(new View.OnClickListener() {
+
+            mDeleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(listener != null){
                         int position = getAdapterPosition();
                         if(position != RecyclerView.NO_POSITION){
-                            listener.onRoomClick(position);
+                            listener.onDeleteClick(position);
                         }
                     }
                 }

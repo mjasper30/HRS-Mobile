@@ -28,27 +28,7 @@ public class Room extends AppCompatActivity{
 
         createExampleList();
         buildRecyclerView();
-
-        buttonInsert = findViewById(R.id.button_insert);
-        buttonRemove = findViewById(R.id.button_remove);
-        editTextInsert = findViewById(R.id.edittext_insert);
-        editTextRemove = findViewById(R.id.edittext_remove);
-
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = Integer.parseInt(editTextInsert.getText().toString());
-                insertRoom(position);
-            }
-        });
-
-        buttonRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = Integer.parseInt(editTextRemove.getText().toString());
-                removeRoom(position);
-            }
-        });
+        setButtons();
     }
 
     public void insertRoom(int position) {
@@ -87,6 +67,34 @@ public class Room extends AppCompatActivity{
             @Override
             public void onRoomClick(int position) {
                 changeRoom(position, "Clicked");
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                removeRoom(position);
+            }
+        });
+    }
+
+    public void setButtons(){
+        buttonInsert = findViewById(R.id.button_insert);
+        buttonRemove = findViewById(R.id.button_remove);
+        editTextInsert = findViewById(R.id.edittext_insert);
+        editTextRemove = findViewById(R.id.edittext_remove);
+
+        buttonInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(editTextInsert.getText().toString());
+                insertRoom(position);
+            }
+        });
+
+        buttonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(editTextRemove.getText().toString());
+                removeRoom(position);
             }
         });
     }
