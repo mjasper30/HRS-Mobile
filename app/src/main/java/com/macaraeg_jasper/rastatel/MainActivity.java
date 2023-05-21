@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.macaraeg_jasper.rastatel.activities.RoomActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.d("res", response);
                     if (response.equals("success")) {
-                        Intent intent = new Intent(MainActivity.this, Room.class);
+                        Intent intent = new Intent(MainActivity.this, RoomActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (response.equals("failure")) {
