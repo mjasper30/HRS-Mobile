@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
+    private boolean isBackPressedOnce = false;
 
     private EditText etEmail, etPassword;
     private String email, password;
@@ -79,5 +82,24 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
         finish();
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (isBackPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+        isBackPressedOnce = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        }, 2000);
+
     }
 }

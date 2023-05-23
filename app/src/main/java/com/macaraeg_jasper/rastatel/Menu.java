@@ -1,9 +1,13 @@
 package com.macaraeg_jasper.rastatel;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,22 +16,24 @@ import com.macaraeg_jasper.rastatel.activities.RoomActivity;
 
 public class Menu extends AppCompatActivity {
 
-    private ImageButton imgRooms;
-    private ImageButton imgMyBookings;
-    private ImageButton imgProfile;
-    private ImageButton imgLogout;
+    private boolean isBackPressedOnce=false;
+
+    private RelativeLayout listRoom;
+    private RelativeLayout listBooking;
+    private RelativeLayout listProfile;
+    private RelativeLayout listLogout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        imgRooms = (ImageButton) findViewById(R.id.imgRooms);
-        imgMyBookings = (ImageButton) findViewById(R.id.imgMyBookings);
-        imgProfile = (ImageButton) findViewById(R.id.imgProfile);
-        imgLogout = (ImageButton) findViewById(R.id.imgLogout);
+        listRoom = (RelativeLayout) findViewById(R.id.listRoom);
+        listBooking = (RelativeLayout) findViewById(R.id.listBooking);
+        listProfile = (RelativeLayout) findViewById(R.id.listProfile);
+        listLogout = (RelativeLayout) findViewById(R.id.listLogout);
 
-        imgRooms.setOnClickListener(new View.OnClickListener() {
+        listRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Menu.this, RoomActivity.class);
@@ -36,7 +42,7 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        imgMyBookings.setOnClickListener(new View.OnClickListener() {
+        listBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Menu.this, MyBookingActivity.class);
@@ -45,14 +51,14 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        imgProfile.setOnClickListener(new View.OnClickListener() {
+        listProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        imgLogout.setOnClickListener(new View.OnClickListener() {
+        listLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Menu.this, MainActivity.class);
@@ -60,5 +66,24 @@ public class Menu extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (isBackPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+        isBackPressedOnce = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        }, 2000);
+
     }
 }
