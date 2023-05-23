@@ -15,12 +15,17 @@
         android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".SideBar">
+        </activity>
+        <activity android:name=".Menu">
         </activity>
         <activity android:name=".MainActivity">
         </activity>
@@ -29,6 +34,9 @@
         <activity android:name=".Register">
         </activity>
         <activity android:name=".activities.RoomActivity">
+        </activity>
+        <activity android:name=".activities.MyBookingActivity">
+
         </activity>
     </application>
 

@@ -77,8 +77,9 @@
         android:layout_marginTop="7.5dp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal" />
-        <!--    android:onClick="register"-->
+        android:layout_gravity="center_horizontal"
+        android:onClick="register"/>
+
 
 
 </LinearLayout>
